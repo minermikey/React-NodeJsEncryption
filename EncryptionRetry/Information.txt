@@ -1,0 +1,48 @@
+1️⃣ User Registration
+────────────────────────────
+Client POST /users
+{
+  "name": "Peanute Butter 1",
+  "email": "peanut@example.com",
+  "password": "password"
+}
+      │
+      ▼
+Server hashes password with bcrypt
+Server hashes email with SHA-256
+Server stores user in memory
+Server responds with created user
+────────────────────────────
+
+2️⃣ User Login
+────────────────────────────
+Client POST /users/login
+{
+  "name": "Peanute Butter 1",
+  "email": "peanut@example.com",
+  "password": "password"
+}
+      │
+      ▼
+Server finds user by name
+Server verifies password with bcrypt
+Server verifies email hash
+If both valid → create JWT token
+JWT payload: { name, email }
+JWT signed with secret key
+Token sent back to client
+────────────────────────────
+
+3️⃣ Access Protected Route
+────────────────────────────
+Client GET /protected
+Header: Authorization: Bearer <JWT token>
+      │
+      ▼
+Server reads Authorization header
+Server extracts token
+Server verifies token with JWT_SECRET
+  │
+  ├─ Valid → attach user info to request → return data
+  └─ Invalid/expired → return 403 "Invalid or expired token"
+────────────────────────────

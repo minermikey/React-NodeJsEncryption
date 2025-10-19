@@ -1,0 +1,30 @@
+GET http://localhost:5001/users
+
+######
+
+POST http://localhost:5001/users
+content-type: application/json
+
+{
+    "name": "Peanute Butter 1",
+    "email": "peanut@example.com",
+    "password": "password"
+}
+
+#########
+
+POST http://localhost:5001/users/login
+Content-Type: application/json
+
+{
+  "name": "Peanute Butter 1",
+  "email": "peanut@example.com",
+  "password": "password"
+}
+
+
+#########
+
+GET http://localhost:5001/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUGVhbnV0ZSBCdXR0ZXIgMSIsImVtYWlsIjoiZGYzNTkyZWViYzM3NmM3NTJmNDE1NWIxOTg4ZDkxMGEwYjU0NDY0Y2Y0YjgyZTJkZTU3Y2ZlNjVmYWQyZDY3NiIsImlhdCI6MTc2MDg5NjE3MywiZXhwIjoxNzYwOTMyMTczfQ.dTFSL7utBSFV1yodMoj9E2yY57Fd3HlZnSaNQoHC6Qw
+
